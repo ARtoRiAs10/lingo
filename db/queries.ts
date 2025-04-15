@@ -167,6 +167,8 @@ export const getLesson = cache(async (id?: number) => {
     },
   });
 
+  console.log("Fetched Lesson Data:" , data);
+
   if (!data || !data.challenges) return null;
 
   const normalizedChallenges = data.challenges.map((challenge) => {

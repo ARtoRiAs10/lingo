@@ -23,7 +23,7 @@ export const  upsertUserProgress = async (courseId: number) => {
 
     
 
-    // if (!course.units.length || !course.units[0].lessons.length) throw new Error("Course has no lessons");
+    if (!course.units.length || !course.units[0].lessons.length) throw new Error("Course has no lessons");
 
     const existingUserProgress = await getUserProgress();
 
