@@ -1,4 +1,5 @@
 import { FeedWrapper } from "@/components/feed-wrapper";
+import { Quests } from "@/components/quests";
 import { StickyWrapper } from "@/components/sticky-wrapper";
 import { UserProgress } from "@/components/user-progress";
 import { getUserProgress, getUserSubscription } from "@/db/queries";
@@ -28,6 +29,8 @@ const ShopPage = async () => {
                     points={userProgress.points}
                     hasActiveSubscription={isPro}
                 />
+
+                <Quests points={userProgress.points} />
             </StickyWrapper>
 
 
