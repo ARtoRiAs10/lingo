@@ -18,7 +18,6 @@ import { usePracticeModal } from "@/store/use-practice-modal";
 import { Challenge } from "./challenge";
 import { Footer } from "./footer";
 import { Header } from "./header";
-// import { Header } from "./Header";
 import { QuestionBubble } from "./question-bubble";
 import { ResultCard } from "./result-card";
 
