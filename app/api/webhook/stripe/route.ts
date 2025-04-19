@@ -62,13 +62,13 @@ export async function POST(req: NextRequest) {
 
   // invoice.payment_succeeded → subscription renewal
   if (event.type === "invoice.payment_succeeded") {
-    const invoice = event.data.object as Stripe.Invoice;
+    const invoice = event.data.object as Stripe.Invoice & { subscription: string};
 
     if (!invoice.subscription) {
       return new NextResponse("Subscription ID missing in invoice.", { status: 400 });
     }
 
-    const subscription = await stripe.subscriptions.retrieve(invoice.subscription as string);
+    const subscription = await stripe.subscriptions.retrieve(invoice.subscription );
 
     let currentPeriodEnd: Date | null = null;
 
