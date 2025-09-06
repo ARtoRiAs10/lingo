@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { AchievementBadge } from "./achievements-badge";
 // import { getUserAchievements } from "@/db/achievements";
-import { Achievement, UserAchievement } from "@/lib/achievements";
+import {  UserAchievement } from "@/lib/achievements";
 
 interface Props {
   userId: string;

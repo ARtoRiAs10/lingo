@@ -60,7 +60,7 @@ export const LeaderboardCard = ({ entries, type, currentUserId }: LeaderboardCar
         {entries.length === 0 ? (
           <p className="text-center text-muted-foreground">No entries yet</p>
         ) : (
-          entries.map((entry, index) => (
+          entries.map((entry) => (
             <div
               key={entry.userId}
               className={`flex items-center gap-3 p-3 rounded-lg border transition-colors ${

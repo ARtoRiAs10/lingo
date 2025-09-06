@@ -3,11 +3,10 @@ import { currentUser } from '@clerk/nextjs/server';
 import  db  from '@/db/drizzle';
 import { 
   leaderboardEntries, 
-  userProgress, 
-  challengeProgress,
+  userProgress,
   
 } from '@/db/schema';
-import { eq, desc, sql, and, gte } from 'drizzle-orm';
+import { desc, sql } from 'drizzle-orm';
 
 export async function GET(request: NextRequest) {
   try {
@@ -34,7 +33,6 @@ export async function GET(request: NextRequest) {
         timeFilter = new Date(0); // Beginning of time
         break;
       default:
-        timeFilter = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
     }
 
     // Get leaderboard entries

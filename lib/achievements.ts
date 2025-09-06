@@ -1,6 +1,6 @@
 import db  from '@/db/drizzle';
 import { achievements, userAchievements, userProgress, challengeProgress } from '@/db/schema';
-import { eq, and, count, gte } from 'drizzle-orm';
+import { eq, and, count} from 'drizzle-orm';
 
 export interface Achievement {
   id: number;
