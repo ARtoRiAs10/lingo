@@ -51,6 +51,18 @@ export const Sidebar = ({ className } : Props) => {
             iconSrc="/shop.svg"
             />
 
+        <SidebarItem 
+            label="AI Generator"
+            href="/ai-generator"
+            iconSrc="/ai.svg" // Add this icon to public folder
+            />
+            
+        <SidebarItem 
+            label="Achievements" 
+            href="/achievements"
+            iconSrc="/achievements.svg"
+            />
+
         </div>
 
         <div className="p-4">

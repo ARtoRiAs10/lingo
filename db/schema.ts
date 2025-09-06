@@ -305,3 +305,66 @@ export const userSubscription = pgTable("user_subscription", {
   stripePriceId: text("stripe_price_id").notNull(),
   stripeCurrentPeriodEnd: timestamp("stripe_current_period_end").notNull(),
 });
+
+
+// AI-Generated Courses
+export const aiGeneratedCourses = pgTable("ai_generated_courses", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  language: text("language").notNull(),
+  difficulty: text("difficulty").notNull(), // beginner, intermediate, advanced
+  topic: text("topic").notNull(),
+  createdBy: text("created_by").notNull(),
+  isPublic: boolean("is_public").default(false),
+  generatedAt: timestamp("generated_at").defaultNow(),
+  aiModel: text("ai_model").notNull(), // track which AI model was used
+  prompt: text("prompt"), // store the generation prompt for reference
+});
+
+// Achievements System
+export const achievements = pgTable("achievements", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  description: text("description").notNull(),
+  icon: text("icon").notNull(),
+  category: text("category").notNull(), // learning, streak, social, special
+  condition: text("condition").notNull(), // JSON string describing unlock condition
+  points: integer("points").default(0),
+  rarity: text("rarity").default("common"), // common, rare, epic, legendary
+  isActive: boolean("is_active").default(true),
+});
+
+export const userAchievements = pgTable("user_achievements", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id").notNull(),
+  achievementId: integer("achievement_id").references(() => achievements.id),
+  unlockedAt: timestamp("unlocked_at").defaultNow(),
+  progress: integer("progress").default(0), // for progressive achievements
+});
+
+// Enhanced Leaderboard
+export const leaderboardEntries = pgTable("leaderboard_entries", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id").notNull(),
+  courseId: integer("course_id").references(() => courses.id),
+  weeklyPoints: integer("weekly_points").default(0),
+  monthlyPoints: integer("monthly_points").default(0),
+  allTimePoints: integer("all_time_points").default(0),
+  streak: integer("streak").default(0),
+  rank: integer("rank"),
+  lastActivity: timestamp("last_activity").defaultNow(),
+});
+
+// AI Content Suggestions
+export const aiContentSuggestions = pgTable("ai_content_suggestions", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id").notNull(),
+  courseId: integer("course_id").references(() => courses.id),
+  suggestion: text("suggestion").notNull(),
+  type: text("type").notNull(), // lesson, practice, review
+  difficulty: text("difficulty").notNull(),
+  priority: integer("priority").default(1),
+  isUsed: boolean("is_used").default(false),
+  generatedAt: timestamp("generated_at").defaultNow(),
+});
